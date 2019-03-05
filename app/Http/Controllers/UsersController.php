@@ -57,6 +57,8 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -67,19 +69,29 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+                                // ['user' => $user]
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $user = User::find($id);
+
+        $user->name = request('name');
+        $user->email = request('email');
+        if(!empty(request('password'))){
+            $user->password = request('password');
+        }
+        $user->save();
+
+        return redirect()->route('users.index')->withFlashMessage('Korisnik je ' . $user->name . ' uspješno promijenjen.');
     }
 
     /**
@@ -90,6 +102,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect()->route('users.index')->withFlashMessage('Korisnik je uspješno izbrisan.');
     }
 }

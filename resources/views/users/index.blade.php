@@ -29,6 +29,7 @@
                                 <th scope="col">Id</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Created at</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -38,13 +39,14 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
                                     <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                         {{ method_field('DELETE') }}
                                         {{ csrf_field() }}
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm" role="button">Uredi</a>
                                         <button class="btn btn-danger btn-sm">Izbriši</button>
                                     </form>
-                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm" role="button">Uredi</a>
                                 </td>
                             </tr>
                             @endforeach
