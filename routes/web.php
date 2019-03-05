@@ -35,4 +35,9 @@ Route::patch('/users/{user}', 'UsersController@update');
 
 Route::delete('/users/{user}', 'UsersController@destroy');
  */
+
 Route::resource('users', 'UsersController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
