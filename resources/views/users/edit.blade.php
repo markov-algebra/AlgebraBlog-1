@@ -19,18 +19,25 @@
                     {{ csrf_field() }}
                     <div class="form-group">
                          <label for="naziv">Name</label>
-                         <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" />
+                         <input type="text" class="form-control {{ $errors->has('username') ? 'has-error' : '' }}" id="name" name="name" value="{{ $user->name }}" />
                     </div>
                     <div class="form-group">
                          <label for="email">Email</label>
-                         <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" />
+                         <input type="email" class="form-control {{ $errors->has('email') ? 'has-error' : '' }}" id="email" name="email" value="{{ $user->email }}" />
                     </div>
                     <div class="form-group">
                          <label for="password">Password</label>
-                         <input type="password" class="form-control" id="password" name="password" placeholder="Leave empty if you don't want to change">
+                         <input type="password" class="form-control {{ $errors->has('password') ? 'has-error' : '' }}" id="password" name="password" placeholder="Leave empty if you don't want to change">
                     </div>
-                    <button type="submit" class="btn btn-primary">Edit</button>
-                    <a href="{{ route('users.index') }}" class="btn btn-danger" role="button">Back</a>
+
+                    <div class="form-group">
+                         <button type="submit" class="btn btn-primary">Edit</button>
+                         <a href="{{ route('users.index') }}" class="btn btn-danger" role="button">Back</a>
+                    </div>
+
+                    <div class="form-group">
+                         @include('layouts.errors')
+                    </div>
                </form>
           </div>
      </div>
