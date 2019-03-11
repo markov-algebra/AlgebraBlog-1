@@ -18,22 +18,29 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="naziv">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" placeholder="Insert your username">
+                            <input type="text" class="form-control {{ $errors->has('username') ? 'has-error' : '' }}" id="username" name="username" placeholder="Insert your username">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Insert your email">
+                            <input type="email" class="form-control {{ $errors->has('email') ? 'has-error' : '' }}" id="email" name="email" placeholder="Insert your email">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Insert your password">
+                            <input type="password" class="form-control {{ $errors->has('password') ? 'has-error' : '' }}" id="password" name="password" placeholder="Insert your password">
                         </div>
                         <div class="form-group">
                             <label for="confirm_password">Confirm password</label>
-                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password">
+                            <input type="password" class="form-control {{ $errors->has('confirm_password') ? 'has-error' : '' }}" id="confirm_password" name="confirm_password" placeholder="Confirm your password">
                         </div>
-                        <button type="submit" class="btn btn-primary">Confirm</button>
-                        <a href="{{ route('users.index')}}" class="btn btn-danger" role="button">Back</a>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Confirm</button>
+                            <a href="{{ route('users.index')}}" class="btn btn-danger" role="button">Back</a>
+                        </div>
+
+                        <div class="form-group">
+                            @include('layouts.errors')
+                        </div>
                     </form>
             </div>
         </div>

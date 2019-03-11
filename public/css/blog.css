@@ -164,3 +164,7 @@
   .blog-footer p:last-child {
     margin-bottom: 0;
   }
+
+  .has-error{
+    border: 1px solid #e74c3c
+}

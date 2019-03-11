@@ -36,7 +36,7 @@ class PostsController extends Controller
 
         request()->validate([
             'title' => ['required', 'min:3', 'max:255'],
-            'body' => 'required|min:3'
+            'body' => 'required|min:3|max:65535'
         ]);
 
        /*  $post = new Post();
@@ -51,6 +51,40 @@ class PostsController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        return redirect()->route('posts');
+        return redirect()->route('posts')->withFlashMessage('Post added successfully.');
+    }
+
+    public function edit($id)
+    {
+        $post = Post::find($id);
+
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update($id)
+    {
+
+        request()->validate([
+            'title' =>  'required|min:3|max:255',
+            'body'  =>  'required|min:3|max:65535'
+        ]);
+        
+        $post = Post::find($id);
+        $post_title = $post->title;
+        $post->title = request('title');
+        $post->body = request('body');
+        
+        $post->save();
+
+        return redirect()->route('posts.show', $post->id)->withFlashMessage('Post "'.$post_title.'" updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::find($id);
+        $post_title = $post->title;
+        $post->delete();
+
+        return redirect()->route('posts')->withFlashMessage('Post "'.$post_title.'" deleted successfully.');
     }
 }

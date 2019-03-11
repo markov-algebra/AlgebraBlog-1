@@ -25,14 +25,14 @@
 
                     {{ csrf_field() }}
 
-                    <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+                    <div class="form-group">
                          <label for="title">Title</label>
-                         <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" />
+                         <input type="text" class="form-control {{ $errors->has('title') ? 'has-error' : '' }} " id="title" name="title" value="{{ old('title') }}" />
                     </div>
 
-                    <div class="form-group {{ $errors->has('body') ? 'has-error' : '' }}">
+                    <div class="form-group">
                          <label for="body">Body</label>
-                         <textarea class="form-control" id="body" name="body" rows="10" cols="80">{{ old('body') }}</textarea>
+                         <textarea class="form-control {{ $errors->has('body') ? 'has-error' : '' }} " id="body" name="body" rows="10" cols="80">{{ old('body') }}</textarea>
                     </div>
 
                     <div class="form-group">
