@@ -1,4 +1,6 @@
-# Algebra Blog
+# Algebra Blog 
+
+Pozdrav Profesore!
 
 [![Build Status](https://travis-ci.org/adobrini-algebra/AlgebraBlog.svg?branch=master)](https://travis-ci.org/adobrini-algebra/AlgebraBlog)
 
