@@ -33,10 +33,11 @@ Route::delete('/posts/{post}', 'PostsController@destroy')->name('posts.destroy')
 // Comments
 Route::post('/posts/{id}/comment', 'CommentController@store')->middleware('auth');
 
+// Tags
+Route::get('/posts/tags/{tag}', 'TagController@index')->name('tags');
 
 
-
-Route::resource('users', 'UsersController');
+Route::resource('users', 'UsersController')->middleware('verified');
 
 Auth::routes(['verify' => true]);
 
