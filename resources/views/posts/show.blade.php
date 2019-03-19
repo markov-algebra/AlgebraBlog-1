@@ -23,10 +23,24 @@
             @endforeach
         </section>
         @endif
+
+        @if(count($post->categories))
+        <section>
+            <h6 style="display: inline">Categories:</h6>
+            @foreach($post->categories as $category)
+                <a href="{{ route('categories', $category) }}">{{ $category->name }}</a>
+            @endforeach
+        </section>
+        @endif
+
+        <br>
         
         <section>
-            {{ $post->body }}
+        <h5>   {{ $post->body }} </h5>
         </section>
+
+        <br>
+        <br>
 	
 	@if ( $post->user_id == auth()->id() )
 	<form style="margin-top:4%" action="{{ route('posts.destroy',$post->id) }}" method="POST">

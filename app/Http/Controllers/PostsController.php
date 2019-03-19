@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Carbon\Carbon;
 use App\Tag;
+use App\Category;
 
 class PostsController extends Controller
 {
@@ -69,6 +70,10 @@ class PostsController extends Controller
             'body' => request('body'),
             'user_id' => auth()->id()
         ]);
+
+        $category = request('category');
+        $category = Category::where('name', $category)->get();
+        $post->categories()->attach($category);
 
         $tag = request('tag');
         $tag = Tag::where('name', $tag)->get();
