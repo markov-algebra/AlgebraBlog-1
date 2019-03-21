@@ -20,6 +20,17 @@
                     <label for="body">Body:</label>
                     <textarea class="form-control {{ $errors->has('body') ? 'has-error' : '' }} " id="body" name="body" rows="10" cols="80">{{ $post->body }}</textarea>
                 </div>
+
+                <div class="form-group">
+                    <label for="body">Categories:</label>
+                    <input type="text" class="form-control {{ $errors->has('category') ? 'has-error' : '' }} " id="category" name="category" value="{{ $post->category }}" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="body">Tags:</label>
+                    <input type="text" class="form-control {{ $errors->has('tag') ? 'has-error' : '' }} " id="tag" name="tag" value="{{ $post->tag }}" />
+                </div>
+
                 <button type="submit" class="btn btn-primary">Confirm</button>
                 <a href="{{ route('posts') }}" class="btn btn-danger" role="button">Back</a>
 

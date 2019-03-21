@@ -95,12 +95,22 @@ class PostsController extends Controller
         request()->validate([
             'title' =>  'required|min:3|max:255',
             'body'  =>  'required|min:3|max:65535'
+            
         ]);
         
         $post = Post::find($id);
         $post_title = $post->title;
         $post->title = request('title');
         $post->body = request('body');
+        
+        $tag = request('tag');
+        $tag = Tag::where('name', $tag)->get();
+        $post->tags()->sync($tag);
+
+        $category = request('category');
+        $category = Category::where('name', $category)->get();
+        $post->categories()->attach($category);
+
         
         $post->save();
 
